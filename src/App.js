@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./stylesheet.css";
+import Map from "./components/Map";
+import Header from "./components/Header";
+import Slider from "./components/Slider";
+import Search from "./components/Search";
 
 function App() {
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [searchResult, setSearchResult] = useState(null);
+  const [tweetsResult, setTweetsResult] = useState(null);
+  const [searchTopic, setSearchTopic]   = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <div id="container">
+        <div id="mapContainer">
+          <Search setSearchResult={setSearchResult} setSelectedCity={setSelectedCity} />
+          <div id="mapClipPath">
+            <Map
+              searchResult={searchResult}
+              selectedProperty={selectedCity}
+              setTweetsResult={setTweetsResult}
+              setSelectedProperty={setSelectedCity}
+            />
+          </div>
+        </div>
+        <Slider selectedCity={selectedCity} tweetsResult={tweetsResult} setTweetsResult={setTweetsResult} />
+      </div>
     </div>
   );
 }
