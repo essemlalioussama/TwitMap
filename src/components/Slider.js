@@ -17,15 +17,24 @@ function Tweet(tweet) {
 
 export default function Slider(props) {
 
-  function handleClick(city) {
+    const [loadingTweets, setLoadingTweets] = useState(false);
+
+  async function handleClick(city) {
     const url = "http://localhost:4000/cities/";
-    fetch(url.concat(city))
+
+    setLoadingTweets(true);
+    
+    await fetch(url.concat(city))
       .then(res => res.json())
-      .then(result => props.setTweetsResult(result.tweets));
+      .then(result => props.setTweetsResult(result.tweets))
+      .then(console.log("done"));
+
+    setLoadingTweets(false);
   }
 
   return (
     <div id="slider">
+        {loadingTweets ? <div id="loadBox">Chargement en cours ... <div class="loader"></div></div> : <div>
       <h4 id="titreTweets">Vous pouvez voir toutes les tweets :</h4>
       {props.selectedCity
         ? props.tweetsResult
@@ -36,7 +45,7 @@ export default function Slider(props) {
             >
               Voir les tweets dans {props.selectedCity.name}
             </button>
-        : <p id="villeMsg">Veuillez chercher un sujet et selectionner une ville !</p>}
+        : <p id="villeMsg">Veuillez chercher un sujet et selectionner une ville !</p>}</div>}
     </div>
   );
 }

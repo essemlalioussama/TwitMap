@@ -4,7 +4,7 @@ class Search extends Component {
   
     constructor(props){
         super(props);
-        this.state = {value: ''}
+        this.state = {value: '', loading: false}
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,16 +13,22 @@ class Search extends Component {
     handleChange(event) {
         this.setState({value: event.target.value});
     }
-    
+
     handleSubmit(event) {
-        fetch("http://localhost:4000/cities")
-            .then(res => res.json())
-            .then((result) => this.props.setSearchResult(result));
-        this.setState({value: ''});
-        this.props.setSelectedCity(null);
+        this.fetchApi();
         event.preventDefault();
     }
 
+    
+    async fetchApi() {
+        this.setState({value: this.state.value, loading:true});
+        await fetch("http://localhost:4000/cities")
+            .then(res => res.json())
+            .then((result) => this.props.setSearchResult(result));
+        this.setState({value: '', loading: false});
+        this.props.setSelectedCity(null);
+    }
+    
   
     render() {
     return (
@@ -38,6 +44,7 @@ class Search extends Component {
             placeholder="Ex: Covid, Sport ... "
           />
           <button id="searchButton" type="submit">Chercher</button>
+          {this.state.loading ? <div class="loaderSearch"/> : <div class="blankLoader"/>}
         </form>
       );
   }

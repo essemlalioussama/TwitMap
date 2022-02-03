@@ -46,7 +46,9 @@
 }
 
 #searchForm {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
   margin: auto;
 }
@@ -77,9 +79,9 @@
 }
 
 #searchButton:hover {
-	border: 1px solid rgb(75, 128, 181);
-	background: rgb(48, 98, 147);
-  }
+  border: 1px solid rgb(75, 128, 181);
+  background: rgb(48, 98, 147);
+}
 
 #tweetsButton {
   height: 30px;
@@ -140,9 +142,52 @@
   margin-top: 5px;
 }
 
-#villeMsg{
-	color: rgb(213, 54, 126);
-	padding: 10px;
-	border: 2px solid rgb(213, 54, 126);
-	border-radius: 10px;
+#villeMsg {
+  color: rgb(213, 54, 126);
+  padding: 10px;
+  border: 2px solid rgb(213, 54, 126);
+  border-radius: 10px;
+}
+
+#loadBox {
+  font-weight: 600;
+  color: #3498db;
+}
+
+.loader {
+  margin-top: 20px;
+  margin-left: 250px;
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+.loaderSearch {
+  margin-left: 10px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
+.blankLoader {
+	margin-left: 10px;
+	z-index: -1;
+	border: 5px solid #f3f3f3;
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
