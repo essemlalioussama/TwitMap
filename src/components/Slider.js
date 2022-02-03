@@ -20,11 +20,11 @@ export default function Slider(props) {
     const [loadingTweets, setLoadingTweets] = useState(false);
 
   async function handleClick(city) {
-    const url = "http://localhost:4000/cities/";
-
+    const url = "http://localhost:9000/tweets/";
+  
     setLoadingTweets(true);
-    
-    await fetch(url.concat(city))
+    console.log(url.concat(city.name).concat('?topic=').concat(props.searchTopic).concat('&limit=').concat(city.count));
+    await fetch(url.concat(city.name).concat('?topic=').concat(props.searchTopic).concat('&limit=').concat(city.count))
       .then(res => res.json())
       .then(result => props.setTweetsResult(result.tweets))
       .then(console.log("done"));

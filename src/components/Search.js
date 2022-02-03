@@ -22,11 +22,12 @@ class Search extends Component {
     
     async fetchApi() {
         this.setState({value: this.state.value, loading:true});
-        await fetch("http://localhost:4000/cities")
-            .then(res => res.json())
-            .then((result) => this.props.setSearchResult(result));
-        this.setState({value: '', loading: false});
+        await fetch("http://localhost:9000/tweetscount?topic=".concat(this.state.value))
+        .then(res => res.json())
+        .then((result) => this.props.setSearchResult(result));
         this.props.setSelectedCity(null);
+        this.props.setSearchTopic(this.state.value);
+        this.setState({value: ''});
     }
     
   

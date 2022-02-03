@@ -26,7 +26,7 @@ function App() {
             />
           </div>
         </div>
-        <Slider selectedCity={selectedCity} tweetsResult={tweetsResult} setTweetsResult={setTweetsResult} />
+        <Slider searchTopic={searchTopic} selectedCity={selectedCity} tweetsResult={tweetsResult} setTweetsResult={setTweetsResult} />
       </div>
     </div>
   );
