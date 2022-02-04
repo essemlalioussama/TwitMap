@@ -19,6 +19,7 @@ function App() {
       <div id="container">
         <div id="mapContainer">
           <Search
+            setFavorisMode={setFavorisMode}
             setSearchTopic={setSearchTopic}
             setSearchResult={setSearchResult}
             setSelectedCity={setSelectedCity}

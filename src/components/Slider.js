@@ -53,18 +53,19 @@ export default function Slider(props) {
   }
   
   function TweetFavoris(tweet) {
+    console.log(tweet);
     return (
       <div class="tweet-wrap">
         <div class="tweet-header">
           <div class="tweet-header-info">
-            {tweet.tweet.name} <span>@{tweet.tweet.username}</span>
-            <span>. {tweet.tweet.datestamp}</span>
-            <button id="btnTweet" onClick={() => clickHandleFavoris(tweet.tweet.near)}>
-              Ajouter au favoris
+            {tweet.tweet.name} <span>@{tweet.tweet.user}</span>
+            <span> {tweet.tweet.date}</span>
+            <button id="btnTweet" onClick={() => clickHandleFavoris(tweet.tweet.city)}>
+              Afficher sur la carte
             </button>
           </div>
           <p>
-            {tweet.tweet.tweet}
+            {tweet.tweet.tweet_contenu}
           </p>
         </div>
       </div>
@@ -102,11 +103,12 @@ export default function Slider(props) {
   async function loadFavoris(){
     props.setFavorisMode(true);
     setLoadingTweets(true);
-    await axios.get("http://localhost:8081/tweets/").then((res)=>setFavorisTweets(res)).then(setLoadingTweets(false));
+    await axios.get("http://localhost:8081/tweets/").then((res)=> {
+      if(res.data.size!=0)setFavorisTweets(res.data)}).then(setLoadingTweets(false));
   }
 
   function clickHandleFavoris(city){
-    cities.forEach((entry) => {if(entry.name === city) props.setMarkerCoordinates(city)});
+    cities.forEach((entry) => {if(entry.name.toUpperCase() === city.toUpperCase()) props.setMarkerCoordinates(entry)});
   }
 
   return (

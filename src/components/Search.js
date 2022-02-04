@@ -15,6 +15,8 @@ class Search extends Component {
     }
 
     handleSubmit(event) {
+        this.props.setFavorisMode(false);
+        this.props.setSearchResult(null);
         this.fetchApi();
         event.preventDefault();
     }
