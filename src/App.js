@@ -16,7 +16,7 @@ function App() {
       <Header />
       <div id="container">
         <div id="mapContainer">
-          <Search setSearchResult={setSearchResult} setSelectedCity={setSelectedCity} />
+          <Search setSearchTopic={setSearchTopic} setSearchResult={setSearchResult} setSelectedCity={setSelectedCity} />
           <div id="mapClipPath">
             <Map
               searchResult={searchResult}

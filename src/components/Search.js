@@ -27,7 +27,7 @@ class Search extends Component {
         .then((result) => this.props.setSearchResult(result));
         this.props.setSelectedCity(null);
         this.props.setSearchTopic(this.state.value);
-        this.setState({value: ''});
+        this.setState({value: '', loading: false});
     }
     
   

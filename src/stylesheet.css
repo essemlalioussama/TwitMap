@@ -123,23 +123,33 @@
   padding: 30px;
   box-shadow: 0px 0px 15px 0px rgb(87, 92, 95, 0.313);
 }
-
-.tweet-header {
+.tweet-header-info {
   display: flex;
   align-items: flex-start;
   font-size: 14px;
-}
-.tweet-header-info {
   font-weight: bold;
+  align-items: center;
 }
 .tweet-header-info span {
   color: #657786;
   font-weight: normal;
   margin-left: 5px;
 }
-.tweet-header-info p {
+.tweet-header p {
   font-weight: normal;
-  margin-top: 5px;
+  margin-top: 10px;
+}
+
+#btnTweet{
+  height: 25px;
+  border: 1px solid rgb(57, 147, 236);
+  background: rgb(57, 147, 236);
+  padding: 0 10px 0 10px;
+  text-align: center;
+  margin-left: auto;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #villeMsg {

@@ -1,15 +1,39 @@
 import React, { useState } from "react";
+import axios from 'axios';
+
+
+function clickHandle(tweet) {
+  console.log(tweet);
+  axios.get("http://localhost:8081/tweets/").then((response)=>console.log(response));
+
+  axios.post("http://localhost:8081/tweets/save",
+  {
+    id: tweet.id,
+    date: tweet.datestamp,
+    tweet_contenu: tweet.tweet,
+    city: tweet.near,
+    user: tweet.username
+},{
+    headers: {
+      'Accept': '*/*',
+       'Content-Type': 'application/json'
+    }}).then(response => console.log(response));
+  
+}
+
 
 function Tweet(tweet) {
-  console.log(tweet);
   return (
     <div class="tweet-wrap">
       <div class="tweet-header">
         <div class="tweet-header-info">
-          {tweet.tweet.user} <span>@{tweet.tweet.user}</span>
-          <span>. {tweet.tweet.date}</span>
-          <p>{tweet.tweet.text}</p>
+          {tweet.tweet.name} <span>@{tweet.tweet.username}</span>
+          <span>. {tweet.tweet.datestamp}</span>
+          <button id="btnTweet" onClick={() => clickHandle(tweet.tweet)}>Ajouter au favoris</button>
         </div>
+        <p>
+          {tweet.tweet.tweet}
+        </p>
       </div>
     </div>
   );
@@ -38,10 +62,10 @@ export default function Slider(props) {
       <h4 id="titreTweets">Vous pouvez voir toutes les tweets :</h4>
       {props.selectedCity
         ? props.tweetsResult
-          ? props.tweetsResult.map(tweet => <Tweet tweet={tweet} />)
+          ? props.tweetsResult.map(tweet => <Tweet tweet={tweet}  />)
           : <button
               id="tweetsButton"
-              onClick={() => handleClick(props.selectedCity.name)}
+              onClick={() => handleClick(props.selectedCity)}
             >
               Voir les tweets dans {props.selectedCity.name}
             </button>
