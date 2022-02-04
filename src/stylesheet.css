@@ -140,9 +140,33 @@
   margin-top: 10px;
 }
 
-#btnTweet{
+#favorisBtn{
+  height: 25px;
+  border: 1px solid rgb(235, 118, 229);
+  background: rgb(162, 28, 160);
+  padding: 0 10px 0 10px;
+  margin: 10px;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#rechercheBtn{
   height: 25px;
   border: 1px solid rgb(57, 147, 236);
+  background: rgb(57, 147, 236);
+  margin: 10px;
+  padding: 0 10px 0 10px;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#btnTweet{
+  height: 25px;
+  border: 1px solid rgb(4, 148, 220);
   background: rgb(57, 147, 236);
   padding: 0 10px 0 10px;
   text-align: center;

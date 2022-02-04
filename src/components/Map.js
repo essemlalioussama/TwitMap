@@ -9,7 +9,7 @@ import {
 import properties from "../properties.json";
 import mapStyles from "../mapStyles.json";
 
-function Map({searchResult, selectedProperty, setSelectedProperty, setTweetsResult}) {
+function Map({markerCoordinates, favorisMode, searchResult, selectedProperty, setSelectedProperty, setTweetsResult}) {
 
   const WrappedMap = withScriptjs(
     withGoogleMap(() =>
@@ -18,7 +18,22 @@ function Map({searchResult, selectedProperty, setSelectedProperty, setTweetsResu
         defaultCenter={{ lat: 47.3170042, lng: 3.6048264 }}
         options={{ styles: mapStyles }}
       >
-        {searchResult && searchResult.map(property =>
+
+        {favorisMode && markerCoordinates &&
+        <Marker
+        key={markerCoordinates.id}
+        position={{
+          lat: markerCoordinates.lat,
+          lng: markerCoordinates.lng
+        }}
+        icon={{
+          url: "https://twimap.com/logo.png",
+          scaledSize: new window.google.maps.Size(28, 28)
+        }}
+        />
+        }
+
+        {!favorisMode && searchResult && searchResult.map(property =>
           <Marker
             key={property.id}
             position={{
@@ -36,7 +51,7 @@ function Map({searchResult, selectedProperty, setSelectedProperty, setTweetsResu
           />
         )}
 
-        {selectedProperty &&
+        {!favorisMode && selectedProperty &&
           <InfoWindow
             position={{
               lat: selectedProperty.lat,
